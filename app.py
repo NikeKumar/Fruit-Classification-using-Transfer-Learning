@@ -8,7 +8,7 @@ from keras.models import load_model
 from keras.preprocessing import image
 from flask import send_from_directory
 import tensorflow as tf
-from joblib import load
+
 
 UPLOAD_FOLDER = 'static\\uploads'
 
