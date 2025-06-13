@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction</title>   
+</head>
+
+<style>
+    
+    body {
+        background-image:url(static/images/f4.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    section{
+     width:400px;
+     height:300px;
+     background-color: rgb(88, 183, 221);
+     border-radius: 25px;
+     position:absolute;
+     top:55%;
+     left:50%;
+     padding-bottom:5%;
+     transform:translate(-50%,-50%);
+    }
+    
+    #ans{
+  text-align: center;
+  font-size: 30px;
+  margin: 0 auto;
+  padding: 3% 5%;
+  color: black;
+    }
+#result{
+    color:red
+}
+</style>
+
+<body >
+    <section id="ans" align="center">
+        <h1 id="ans" style="padding-top: 15%;">Predicted Fruit Image</h1>
+        <img id="img" src="{{ image_url }}" alt="Predicted Image">
+        <h1 id="ans">Predicted Fruit : <span id="result">{{ans}}</span></h1>
+
+    </section>
+   
+</body>
+</html>

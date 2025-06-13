@@ -1,0 +1,213 @@
+<html>
+
+<head>
+  <title>Fruit Classification System</title>
+
+  <meta name="viewport" content="width=device-width">
+  <!-- GoogleFont -->
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Calistoga|Josefin+Sans:400,700|Pacifico&display=swap" rel="stylesheet">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+  <!-- fontawesome -->
+  <script src="https://kit.fontawesome.com/b3aed9cb07.js" crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+
+</head>
+<style>
+
+#clear_button{
+  margin-left: 15px;
+  font-weight: bold;
+  color: blue;
+}
+
+#confidence{
+  font-family: 'Josefin Sans', sans-serif;
+  margin-top: 7.5%;
+}
+
+
+
+.welcome{
+   text-align: center;
+   position: relative;
+   color: honeydew;
+   background-color: black;
+   padding-top: 1%;
+   padding-bottom: 1%;
+   font-weight: bold;
+   font-family: 'Prompt', sans-serif;
+}
+
+#team_id{
+   text-align: center;
+   font-size: 25px;
+   padding-right: 3%;
+}
+
+#predict_button{
+  margin-right: 15px;
+  color: blue;
+  font-weight: bold;
+}
+
+#prediction_heading{
+  font-family: 'Josefin Sans', sans-serif;
+  margin-top: 7.5%;
+}
+
+#result{
+  font-size: 5rem;
+}
+
+#title{
+  padding: 1.5% 15%;
+  margin: 0 auto;
+  color:orange;
+  text-align: center;
+  text-shadow:2px 2px 2px black;
+  opacity: 1;
+}
+.para{
+  color:white;
+}
+
+
+.btn {
+    font-size: 15px;
+    padding: 10px;
+
+    background: #eee;
+    border: 1px solid #888;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.buttons_div{
+  margin-bottom: 30px;
+  margin-right: 80px;
+}
+
+.box{
+  background-image:url('static/images/f2.jpg');
+  opacity: 0.8;
+  padding-top: 1%; 
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.heading{
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  display: inline;
+}
+
+.leftside{
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 2%;
+  /* padding-left: 10%; */
+}
+
+#frame{
+  margin-right: 10%;
+}
+
+.predicted_answer{
+  text-align: center;
+  margin: 0 auto;
+  padding: 3% 5%;
+  padding-top: 0;
+  /* padding-left: 10%; */
+}
+
+p{
+  font-family: 'Source Code Pro', monospace,sans-serif;
+  margin-top: 1%;
+}
+
+@media (min-width: 720px) {
+  .leftside{
+    padding-left: 10%;
+  }
+}
+body{
+   background-image: url('static/images/f1.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+#content{
+  margin: 0 auto;
+  padding: 2% 15%;
+  padding-bottom: 0;
+  color:white;
+}
+</style>
+
+<script>
+  
+  function preview() {
+    frame.src=URL.createObjectURL(event.target.files[0]);
+}
+
+    $(document).ready(function() {
+          $('#clear_button').on('click', function() {
+              $('#image').val('');
+              $('#frame').attr('src',"");
+            });
+        });
+
+</script>
+
+
+<body>
+
+  <h1 class="welcome">DEEP LEARNING PROJECT
+  <div id="team_id">2023176041</div>
+  </h1>
+  <section id="title">
+    <h4 class="heading">Fruit Detection using Deep Learning</h4>
+    <br><br>
+
+    <div class="para">
+    <p>
+        Fruit detection using deep learning involves using advanced computer algorithms to identify and recognize different types of fruits in images. Deep learning is a subset of artificial intelligence (AI) that mimics the way the human brain works by processing data through layers of neural networks. In fruit detection, deep learning models are trained on vast amounts of labeled fruit images to learn the unique features and characteristics of each fruit type.</p>
+
+      <br>
+    <p> The process starts with collecting a large dataset of fruit images, where each image is labeled with the type of fruit it contains. These images are then used to train a deep learning model, such as a convolutional neural network (CNN), which learns to identify patterns and features that distinguish one fruit from another. The model is trained to recognize various shapes, colors, textures, and sizes associated with different fruits.
+      </p><br>
+      <p>Once the model is trained, it can be deployed to detect fruits in new images. When presented with a new image containing fruits, the model analyzes the image pixel by pixel and makes predictions about the types of fruits present. This technology can be applied in various industries, including agriculture, food processing, and retail, to automate tasks such as fruit sorting, quality control, and inventory management. By using deep learning for fruit detection, businesses can improve efficiency, reduce labor costs, and ensure consistent quality in fruit-related processes.</p>
+    </div>
+
+  </section>
+
+  <section id="content">
+      
+        <div class="leftside">
+          <div class="box">
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+        <label>Select a image:</label>
+        <input id="image" type="file" name="image" accept="image/png, image/jpeg" onchange="preview()"><br><br>
+          <img id="frame" src="" width="100px" height="100px" alt="image"/>
+          <div class="buttons_div">
+            <button type="submit" class="btn btn-dark" id="predict_button">Predict</button>
+            <button type="button" class="btn btn-dark" id="clear_button">&nbsp Clear &nbsp</button>
+          </div>
+        </form>
+        </div>
+      </div>
+  </section>
+
+</body>
+
+</html>
